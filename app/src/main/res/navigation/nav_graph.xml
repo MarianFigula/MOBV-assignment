@@ -53,6 +53,9 @@
         <action
             android:id="@+id/action_profileFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_forgotPasswordResetFragment"
+            app:destination="@id/forgotPasswordResetFragment" />
     </fragment>
 
     <fragment android:id="@+id/mapFragment"
@@ -68,17 +71,18 @@
     <fragment android:id="@+id/forgotPasswordFragment"
         android:name="eu.mcomputing.mobv.mobvzadanie.ForgotPasswordFragment" >
 
+
         <action
-            android:id="@+id/action_forgotPasswordFragment_to_fragmentForgotPasswordReset"
-            app:destination="@id/forgotPasswordResetFragment" />
+            android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment android:id="@+id/forgotPasswordResetFragment"
         android:name="eu.mcomputing.mobv.mobvzadanie.ForgotPasswordResetFragment">
 
         <action
-            android:id="@+id/action_forgotPasswordResetFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_forgotPasswordResetFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 
 </navigation>
