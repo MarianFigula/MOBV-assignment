@@ -32,7 +32,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         })[AuthViewModel::class.java]
 
         viewModel.loginResult.observe(viewLifecycleOwner){
-            if (it.second != null){
+            val user = it.second
+
+            if (user != null && user.uid.toInt() >= 0){
                 requireView().findNavController().navigate(R.id.feedFragment)
             }else{
                 Snackbar.make(
