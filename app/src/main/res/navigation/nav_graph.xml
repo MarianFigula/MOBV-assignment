@@ -55,7 +55,7 @@
             app:destination="@id/mapFragment" />
         <action
             android:id="@+id/action_profileFragment_to_forgotPasswordResetFragment"
-            app:destination="@id/forgotPasswordResetFragment" />
+            app:destination="@id/ChangePasswordFragment" />
     </fragment>
 
     <fragment android:id="@+id/mapFragment"
@@ -77,8 +77,8 @@
             app:destination="@id/loginFragment" />
     </fragment>
 
-    <fragment android:id="@+id/forgotPasswordResetFragment"
-        android:name="eu.mcomputing.mobv.mobvzadanie.ForgotPasswordResetFragment">
+    <fragment android:id="@+id/ChangePasswordFragment"
+        android:name="eu.mcomputing.mobv.mobvzadanie.ChangePasswordFragment">
 
         <action
             android:id="@+id/action_forgotPasswordResetFragment_to_profileFragment"
