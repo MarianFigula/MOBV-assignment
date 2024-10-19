@@ -1,6 +1,5 @@
 package eu.mcomputing.mobv.mobvzadanie
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,10 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
-import kotlin.random.Random
 
 class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password) {
     val TAG = "ForgotPasswordFragment"
@@ -30,7 +27,7 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password) {
 
         viewModel.resetPasswordResult.observe(viewLifecycleOwner){
             if (it.first.contains("success", ignoreCase = true)){
-                requireView().findNavController().navigate(R.id.forgotPasswordResetFragment)
+                requireView().findNavController().navigate(R.id.loginFragment)
             }else{
                 Snackbar.make(
                     sendEmailCodeButton,
