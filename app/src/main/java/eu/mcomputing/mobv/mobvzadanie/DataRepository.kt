@@ -90,19 +90,24 @@ class DataRepository private constructor(
             val response = service.loginUser(UserLogin(name, password))
             if (response.isSuccessful){
                 response.body()?.let { jsonResponse ->
-                    Log.d(TAG,
+                    return if (jsonResponse.uid.toInt() >= 0) {
+                        Log.d(TAG,
+                            Pair("", User("", name, jsonResponse.uid,
+                                jsonResponse.access, jsonResponse.refresh)).toString())
                         Pair("", User("", name, jsonResponse.uid,
-                            jsonResponse.access, jsonResponse.refresh)).toString())
-                    return Pair("", User("", name, jsonResponse.uid,
-                        jsonResponse.access, jsonResponse.refresh))
+                            jsonResponse.access, jsonResponse.refresh))
+                    } else {
+                        // UID is -1, indicating an incorrect login
+                        Log.d(TAG, "Login failed: Incorrect email or password")
+                        Pair("Incorrect email or password", null)
+                    }
                 }
 
             }else{
                 val errorBody = response.errorBody()?.string()
                 Log.d(TAG, "Error body: $errorBody")
-                return Pair("Error: ${response.code()} - ${response.message()}", null)
+                return Pair("Incorrect email or password", null)
             }
-
 
         }catch (ex: IOException){
             ex.printStackTrace()
@@ -112,6 +117,11 @@ class DataRepository private constructor(
         }
         return Pair("Fatal error. Failed to login user.", null)
     }
+
+
+
+
+
 
     suspend fun apiResetPassword(email: String): Pair<String, String?>{
         if (email.isEmpty()){
