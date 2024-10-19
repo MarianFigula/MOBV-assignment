@@ -183,7 +183,40 @@ class DataRepository private constructor(
         authToken: String,
         oldPassword: String,
         newPassword: String
-    ) {
+    ) : Pair<String, String?> {
+        if (oldPassword.isEmpty() || newPassword.isEmpty()){
+            return Pair("Password cannot be empty", null)
+        }
+
+        val changePasswordRequest = ChangePasswordRequest(oldPassword, newPassword)
+        Log.d(TAG, "Changing password with data: ${Gson().toJson(changePasswordRequest)}")
+
+        try {
+            val response = service.changePassword(
+                "Barer: $authToken",
+                ChangePasswordRequest(oldPassword, newPassword)
+            )
+
+            if (response.isSuccessful){
+                response.body()?.let { jsonResponse ->
+                    return if (jsonResponse.status == "success") {
+                        Pair("Password changed successfully", null)
+                    } else {
+                        Pair("Password change failed", null)
+                    }
+                }
+            }
+            else {
+                return Pair("Error: ${response.code()} - ${response.message()}", null)
+            }
+        }catch (ex: IOException) {
+            ex.printStackTrace()
+            return Pair("Check internet connection. Failed to change password.", null)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+
+        return Pair("Fatal error. Failed to change password.", null)
 
     }
 }

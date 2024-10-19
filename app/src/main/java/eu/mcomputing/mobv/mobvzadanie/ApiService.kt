@@ -4,6 +4,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
@@ -19,6 +20,13 @@ interface ApiService {
     @Headers("x-apikey: c95332ee022df8c953ce470261efc695ecf3e784")
     @POST("user/reset.php")
     suspend fun resetPassword(@Body request: ResetPasswordRequest): Response<ResetPasswordResponse>
+
+    @Headers("x-apikey: c95332ee022df8c953ce470261efc695ecf3e784")
+    @POST("user/password.php")
+    suspend fun changePassword(
+        @Header("Authorization") authToken: String,
+        @Body request: ChangePasswordRequest
+    ): Response<ChangePasswordResponse>
 
     companion object {
         fun create(): ApiService {
@@ -58,3 +66,6 @@ data class LoginResponse(
 
 data class ResetPasswordRequest(val email: String)
 data class ResetPasswordResponse(val status: String, val message: String? = null)
+
+data class ChangePasswordRequest(val oldPassword: String, val newPassword: String)
+data class ChangePasswordResponse(val status: String)
