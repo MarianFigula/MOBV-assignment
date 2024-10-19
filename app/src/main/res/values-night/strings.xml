@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MOBV Assignment</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoieGZpZ3VsYSIsImEiOiJjbGY1aTlrYjkwdzc1M3NvMTUza25panB3In0.aYgaXyH0sEyHcT1wx_1DPQ</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password_question">Forgot Password ?</string>
+    <string name="enter_password_placeholder">Enter password</string>
+    <string name="password_label">Password:</string>
+    <string name="enter_email_placeholder">Enter email</string>
+    <string name="email_label">Email:</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="app">App</string>
+    <string name="repeat_password_placeholder">Repeat password</string>
+    <string name="enter_username_placeholder">Enter username</string>
+    <string name="already_logged_in_question">Already logged in ?</string>
+    <string name="not_yet_a_user_question">Not yet a user ?</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="send_code">Send code</string>
+    <string name="reset_password">Reset password</string>
+    <string name="reset_code_label">Reset Code:</string>
+    <string name="new_password_label">New Password:</string>
+    <string name="repeat_new_password_label">Repeat new password:</string>
+    <string name="enter_code_from_email_placeholder">Enter code from email</string>
+    <string name="enter_new_password_placeholder">Enter new password</string>
+    <string name="map">map</string>
+    <string name="document">document</string>
+    <string name="contact">contact</string>
+    <string name="item_image">item_image</string>
+    <string name="fab">FAB</string>
+</resources>

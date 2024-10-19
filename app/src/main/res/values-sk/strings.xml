@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">MOBV Zadanie</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoieGZpZ3VsYSIsImEiOiJjbGY1aTlrYjkwdzc1M3NvMTUza25panB3In0.aYgaXyH0sEyHcT1wx_1DPQ</string>
+    <string name="sign_in">Prihlásiť sa</string>
+    <string name="forgot_password_question">Zabudli ste heslo ?</string>
+    <string name="enter_password_placeholder">Zadajte heslo</string>
+    <string name="password_label">Heslo:</string>
+    <string name="enter_email_placeholder">Zadajte e-mail</string>
+    <string name="email_label">E-mail:</string>
+    <string name="sign_up">Zaregistrovať sa</string>
+    <string name="app">Aplikácia</string>
+    <string name="repeat_password_placeholder">Zopakujte heslo</string>
+    <string name="enter_username_placeholder">Zadajte používateľské meno</string>
+    <string name="already_logged_in_question">Už ste prihlásený ?</string>
+    <string name="not_yet_a_user_question">Ešte nemáte účet ?</string>
+    <string name="forgot_password">Zabudnuté heslo</string>
+    <string name="send_code">Odoslať kód</string>
+    <string name="reset_password">Obnoviť heslo</string>
+    <string name="reset_code_label">Obnovovací kód:</string>
+    <string name="new_password_label">Nové heslo:</string>
+    <string name="repeat_new_password_label">Zopakujte nové heslo:</string>
+    <string name="enter_code_from_email_placeholder">Zadajte kód z e-mailu</string>
+    <string name="enter_new_password_placeholder">Zadajte nové heslo</string>
+    <string name="map">mapa</string>
+    <string name="document">dokument</string>
+    <string name="contact">kontakt</string>
+    <string name="item_image">obrázok položky</string>
+    <string name="fab">FAB</string>
+</resources>
