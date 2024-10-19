@@ -6,12 +6,23 @@
     android:id="@+id/profileFragment">
 
     <Button
-        android:id="@+id/submitButton"
+        android:id="@+id/signOutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_out"
         android:layout_marginTop="@dimen/m40"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/changePasswordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_password"
+        android:layout_marginTop="@dimen/m40"
+        app:layout_constraintTop_toBottomOf="@id/signOutButton"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent" />
