@@ -9,10 +9,11 @@ import kotlinx.coroutines.launch
 class AuthViewModel(private val dataRepository: DataRepository) : ViewModel() {
     private val _registrationResult = MutableLiveData<Pair<String, User?>>()
     private val _loginResult = MutableLiveData<Pair<String, User?>>()
+    private val _resetPasswordResult = MutableLiveData<Pair<String, String?>>()
 
     val registrationResult : LiveData<Pair<String, User?>> get() = _registrationResult
     val loginResult : LiveData<Pair<String, User?>> get() = _loginResult
-
+    val resetPasswordResult: LiveData<Pair<String, String?>> get() = _resetPasswordResult
 
     fun registerUser(
         username: String,
@@ -40,6 +41,17 @@ class AuthViewModel(private val dataRepository: DataRepository) : ViewModel() {
                 email,
                 password
             ))
+        }
+    }
+
+    fun resetPassword(
+        email: String
+    ){
+        viewModelScope.launch {
+            _resetPasswordResult.postValue(dataRepository
+                .apiResetPassword(
+                    email
+                ))
         }
     }
 

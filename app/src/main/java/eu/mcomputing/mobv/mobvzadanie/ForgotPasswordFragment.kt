@@ -6,50 +6,47 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import kotlin.random.Random
 
-class ForgotPasswordFragment: Fragment(R.layout.fragment_forgot_password) {
+class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password) {
     val TAG = "ForgotPasswordFragment"
+    private lateinit var viewModel: AuthViewModel
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val sendEmailCode: Button = view.findViewById(R.id.sendEmailCodeButton)
+        val sendEmailCodeButton: Button = view.findViewById(R.id.sendEmailCodeButton)
 
-        sendEmailCode.setOnClickListener {
-            val email:String = view.findViewById<TextInputEditText?>(R.id.forgotPasswordEditEmail).
-            text.toString()
-
-            if (email == "") {
-                Log.d("TAG", "email je prazdny")
+        viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return AuthViewModel(DataRepository.getInstance()) as T
             }
-            else {
-                // Generate a random 6-digit code
-                val code = Random.nextInt(100000, 999999).toString()
+        })[AuthViewModel::class.java]
 
-                // Create email intent
-                val intent = Intent(Intent.ACTION_SEND).apply {
-                    type = "message/rfc822"
-                    putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
-                    putExtra(Intent.EXTRA_SUBJECT, "Password Reset Code")
-                    putExtra(Intent.EXTRA_TEXT, "Your password reset code is: $code")
-                }
-
-                findNavController().navigate(R.id.forgotPasswordResetFragment)
-
-//                try {
-//                    // Open the email client
-//                    startActivity(Intent.createChooser(intent, "Send Email"))
-//                } catch (e: Exception) {
-//                    Log.d(TAG, "No email app found: ${e.message}")
-//                }
+        viewModel.resetPasswordResult.observe(viewLifecycleOwner){
+            if (it.first.contains("success", ignoreCase = true)){
+                requireView().findNavController().navigate(R.id.forgotPasswordResetFragment)
+            }else{
+                Snackbar.make(
+                    sendEmailCodeButton,
+                    it.first,
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
-
-
-
         }
 
-
+        sendEmailCodeButton.apply {
+            setOnClickListener {
+                viewModel.resetPassword(
+                    view.findViewById<TextInputEditText>(R.id.forgotPasswordEditEmail).text.toString()
+                )
+            }
+        }
         Log.d(TAG, "ok")
     }
 }

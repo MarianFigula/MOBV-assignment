@@ -13,8 +13,12 @@ interface ApiService {
     suspend fun registerUser(@Body userInfo: UserRegistration) : Response<RegistrationResponse>
 
     @Headers("x-apikey: c95332ee022df8c953ce470261efc695ecf3e784")
-    @POST("user/login.php") // Change to your actual login endpoint
+    @POST("user/login.php")
     suspend fun loginUser(@Body userInfo: UserLogin): Response<LoginResponse>
+
+    @Headers("x-apikey: c95332ee022df8c953ce470261efc695ecf3e784")
+    @POST("user/reset.php")
+    suspend fun resetPassword(@Body request: ResetPasswordRequest): Response<ResetPasswordResponse>
 
     companion object {
         fun create(): ApiService {
@@ -51,3 +55,6 @@ data class LoginResponse(
     val access: String,
     val refresh: String
 )
+
+data class ResetPasswordRequest(val email: String)
+data class ResetPasswordResponse(val status: String, val message: String? = null)

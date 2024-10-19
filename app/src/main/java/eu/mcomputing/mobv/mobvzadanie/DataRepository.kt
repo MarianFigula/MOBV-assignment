@@ -112,4 +112,42 @@ class DataRepository private constructor(
         }
         return Pair("Fatal error. Failed to login user.", null)
     }
+
+    suspend fun apiResetPassword(email: String): Pair<String, String?>{
+        if (email.isEmpty()){
+            return Pair("Email cannot be empty", null)
+        }
+
+        // Create the UserRegistration object
+        val userLogin = ResetPasswordRequest(email)
+
+        // Log the data being sent
+        Log.d(TAG, "Login user with data: ${Gson().toJson(userLogin)}")
+        Log.d(TAG, "email: $email")
+
+        try {
+            val response = service.resetPassword(ResetPasswordRequest(email))
+            if (response.isSuccessful){
+                response.body()?.let { jsonResponse ->
+                    Log.d(TAG, "Password reset response: ${Gson().toJson(jsonResponse)}")
+                    return if (jsonResponse.status == "success") {
+                        Pair("Password reset email sent successfully.", null)
+                    } else {
+                        Pair("Password reset failed: ${jsonResponse.message}", null)
+                    }
+                }
+            }else {
+                val errorBody = response.errorBody()?.string()
+                Log.d(TAG, "Error body: $errorBody")
+                return Pair("Error: ${response.code()} - ${response.message()}", null)
+            }
+        }catch (ex: IOException) {
+            ex.printStackTrace()
+            return Pair("Check internet connection. Failed to reset password.", null)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+        return Pair("Fatal error. Failed to reset password.", null)
+
+    }
 }
