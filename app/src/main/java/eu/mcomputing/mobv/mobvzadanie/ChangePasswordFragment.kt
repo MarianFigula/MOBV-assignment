@@ -6,7 +6,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
-class ForgotPasswordResetFragment: Fragment(R.layout.fragment_forgot_password_reset) {
+class ChangePasswordFragment: Fragment(R.layout.fragment_forgot_password_reset) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
