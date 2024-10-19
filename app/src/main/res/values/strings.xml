@@ -28,4 +28,6 @@
     <string name="fab">FAB</string>
     <string name="sign_out">Sign Out</string>
     <string name="change_password">Change Password</string>
+    <string name="enter_old_password">Enter old password</string>
+    <string name="old_password_label">Old password</string>
 </resources>
