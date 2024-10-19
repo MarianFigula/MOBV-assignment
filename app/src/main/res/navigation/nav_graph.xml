@@ -21,11 +21,6 @@
         <action
             android:id="@+id/action_loginFragment_to_feedFragment"
             app:destination="@id/feedFragment" >
-
-            <argument
-                android:name="email"
-                app:argType="string"
-                android:defaultValue="" />
         </action>
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
