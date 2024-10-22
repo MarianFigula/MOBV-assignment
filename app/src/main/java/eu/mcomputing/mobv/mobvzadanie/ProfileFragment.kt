@@ -19,12 +19,6 @@ class ProfileFragment: Fragment(R.layout.fragment_profile),
 
         Log.d(TAG, "som profile")
 
-
-        Snackbar.make(view, "Profile needs to be implemented", Snackbar.LENGTH_LONG)
-            .setAction("OK") {
-                // kód po stlačení akcie na Snackbar
-                Log.d(TAG, "ok")
-            }.show()
     }
 
     override fun onMapClick() {
