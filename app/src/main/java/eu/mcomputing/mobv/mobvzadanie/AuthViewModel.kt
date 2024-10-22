@@ -21,14 +21,16 @@ class AuthViewModel(private val dataRepository: DataRepository) : ViewModel() {
         username: String,
         email: String,
         password: String,
-        ){
+        repeatPassword: String
+    ){
 
         viewModelScope.launch {
             _registrationResult.postValue(dataRepository.
             apiRegisterUser(
                 username,
                 email,
-                password
+                password,
+                repeatPassword
             ))
         }
     }

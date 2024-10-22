@@ -51,6 +51,7 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
                     view.findViewById<TextInputEditText>(R.id.editUsername).text.toString(),
                     view.findViewById<TextInputEditText>(R.id.editTextEmailReg).text.toString(),
                     view.findViewById<TextInputEditText>(R.id.editPasswordReg).text.toString(),
+                    view.findViewById<TextInputEditText>(R.id.editRepeatPassword).text.toString()
                 )
             }
         }

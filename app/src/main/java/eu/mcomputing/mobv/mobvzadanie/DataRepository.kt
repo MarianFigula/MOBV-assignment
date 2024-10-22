@@ -21,14 +21,11 @@ class DataRepository private constructor(
             }
     }
 
-
-    // TODO: validacia ci usernamne uz existuje (ci sa vrati uid:-1),
-    //  ci email exist. (vrati sa uid:-2)
-    //  ci sa hesla zhoduju pri registracii
     suspend fun apiRegisterUser(
         username: String,
         email: String,
-        password: String
+        password: String,
+        repeatPassword: String
     ): Pair<String, User?> {
         if (username.isEmpty()) {
             return Pair("Username cannot be empty", null)
@@ -39,13 +36,15 @@ class DataRepository private constructor(
         if (password.isEmpty()) {
             return Pair("Password cannot be empty", null)
         }
-
+        if (password != repeatPassword){
+            return Pair("Passwords should match", null)
+        }
         // Create the UserRegistration object
         val userRegistration = UserRegistration(username, email, password)
 
         // Log the data being sent
         Log.d(TAG, "Registering user with data: ${Gson().toJson(userRegistration)}")
-        Log.d(TAG, "usrname: $username, email: $email, password: $password")
+        Log.d(TAG, "usrname: $username, email: $email, password: $password, repeat: $repeatPassword")
 
         try {
             val response = service.registerUser(UserRegistration(username, email, password))
