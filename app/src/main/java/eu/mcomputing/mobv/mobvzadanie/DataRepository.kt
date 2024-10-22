@@ -21,6 +21,10 @@ class DataRepository private constructor(
             }
     }
 
+
+    // TODO: validacia ci usernamne uz existuje (ci sa vrati uid:-1),
+    //  ci email exist. (vrati sa uid:-2)
+    //  ci sa hesla zhoduju pri registracii
     suspend fun apiRegisterUser(
         username: String,
         email: String,
@@ -47,24 +51,25 @@ class DataRepository private constructor(
             val response = service.registerUser(UserRegistration(username, email, password))
             if (response.isSuccessful) {
                 response.body()?.let { jsonResponse ->
-                    Log.d(
-                        TAG, Pair(
-                            "",
-                            User(
-                                username,
-                                email,
-                                jsonResponse.uid,
-                                jsonResponse.access,
-                                jsonResponse.refresh
+                    return when (jsonResponse.uid) {
+                        (-1).toString() -> {
+                            Log.d(TAG, "Registration failed: Username already exists")
+                            Pair("Username already exists", null)
+                        }
+                        (-2).toString() -> {
+                            Log.d(TAG, "Registration failed: Email already exists")
+                            Pair("Email already exists", null)
+                        }
+                        else -> {
+                            Log.d(TAG, "Registration successful: ${Gson().toJson(jsonResponse)}")
+                            Pair(
+                                "Successful - redirecting", User(
+                                    username, email, jsonResponse.uid,
+                                    jsonResponse.access, jsonResponse.refresh
+                                )
                             )
-                        ).toString()
-                    )
-                    return Pair(
-                        "", User(
-                            username, email, jsonResponse.uid,
-                            jsonResponse.access, jsonResponse.refresh
-                        )
-                    )
+                        }
+                    }
                 }
             } else {
                 val errorBody = response.errorBody()?.string()
