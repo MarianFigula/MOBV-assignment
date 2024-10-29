@@ -107,6 +107,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLabel"
         android:layout_marginHorizontal="@dimen/m40"
+        app:endIconMode="password_toggle"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -141,6 +142,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/repeatPasswordLabel"
         android:layout_marginHorizontal="@dimen/m40"
+        app:endIconMode="password_toggle"
         >
 
         <com.google.android.material.textfield.TextInputEditText
