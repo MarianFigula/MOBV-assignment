@@ -30,4 +30,6 @@
     <string name="change_password">Change Password</string>
     <string name="enter_old_password">Enter old password</string>
     <string name="old_password_label">Old password</string>
+    <string name="load_profile">Load Profile</string>
+    <string name="profile">Profile</string>
 </resources>
