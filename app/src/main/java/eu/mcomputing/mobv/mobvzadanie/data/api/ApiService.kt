@@ -51,6 +51,10 @@ interface ApiService {
         @Body request: ChangePasswordRequest
     ): Response<ChangePasswordResponse>
 
+
+    @GET("geofence/list.php")
+    suspend fun listGeofence(): Response<GeofenceResponse>
+
     companion object {
         fun create(context: Context): ApiService {
 
@@ -120,3 +124,25 @@ data class ResetPasswordResponse(val status: String, val message: String? = null
 // password.php
 data class ChangePasswordRequest(val oldPassword: String, val newPassword: String)
 data class ChangePasswordResponse(val status: String)
+
+// geofence/list.php
+data class GeofenceResponse(
+    val me: GeofenceMeResponse,
+    val list: List<GeofenceUserResponse>
+)
+
+data class GeofenceUserResponse(
+    val uid: String,
+    val radius: Double,
+    val updated: String,
+    val name: String,
+    val photo: String
+)
+
+
+data class GeofenceMeResponse(
+    val uid: String,
+    val lat: Double,
+    val lon: Double,
+    val radius: Double
+)

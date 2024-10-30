@@ -10,11 +10,15 @@ import eu.mcomputing.mobv.mobvzadanie.data.api.RefreshTokenRequest
 import eu.mcomputing.mobv.mobvzadanie.data.api.ResetPasswordRequest
 import eu.mcomputing.mobv.mobvzadanie.data.api.UserLogin
 import eu.mcomputing.mobv.mobvzadanie.data.api.UserRegistration
+import eu.mcomputing.mobv.mobvzadanie.data.db.AppRoomDatabase
+import eu.mcomputing.mobv.mobvzadanie.data.db.LocalCache
+import eu.mcomputing.mobv.mobvzadanie.data.db.entities.UserEntity
 import eu.mcomputing.mobv.mobvzadanie.data.model.User
 import okio.IOException
 
 class DataRepository private constructor(
-    private val service: ApiService
+    private val service: ApiService,
+    private val cache: LocalCache
 ) {
     companion object {
         const val TAG = "DataRepository"
@@ -26,7 +30,10 @@ class DataRepository private constructor(
         fun getInstance(context: Context): DataRepository =
             INSTANCE ?: synchronized(lock) {
                 INSTANCE
-                    ?: DataRepository(ApiService.create(context)).also { INSTANCE = it }
+                    ?: DataRepository(
+                        ApiService.create(context),
+                        LocalCache(AppRoomDatabase.getInstance(context).appDao())
+                    ).also { INSTANCE = it }
             }
     }
 
@@ -254,4 +261,33 @@ class DataRepository private constructor(
         }
         return Pair("Fatal error. Failed to load user.", null)
     }
+
+    suspend fun apiGeofenceUsers(): String {
+        try {
+            val response = service.listGeofence()
+
+            if (response.isSuccessful) {
+                response.body()?.let { resp ->
+                    val users = resp.list.map {
+                        UserEntity(
+                            it.uid, it.name, it.updated,
+                            resp.me.lat, resp.me.lon, it.radius,
+                            it.photo
+                        )
+                    }
+                    cache.insertUserItems(users)
+                    return ""
+                }
+            }
+            return "Failed to load user"
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return "Check internet connection. Failed to load user."
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+        return "Fatal error. Failed to load user."
+    }
+
+    fun getUsers() = cache.getUsers()
 }
