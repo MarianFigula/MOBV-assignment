@@ -1,5 +1,6 @@
 package eu.mcomputing.mobv.mobvzadanie.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,7 +15,7 @@ import eu.mcomputing.mobv.mobvzadanie.viewmodels.AuthViewModel
 import eu.mcomputing.mobv.mobvzadanie.DataRepository
 import eu.mcomputing.mobv.mobvzadanie.R
 
-class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password) {
+class ForgotPasswordFragment() : Fragment(R.layout.fragment_forgot_password) {
     val TAG = "ForgotPasswordFragment"
     private lateinit var viewModel: AuthViewModel
 
@@ -24,7 +25,7 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password) {
 
         viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return AuthViewModel(DataRepository.getInstance()) as T
+                return AuthViewModel(DataRepository.getInstance(requireContext())) as T
             }
         })[AuthViewModel::class.java]
 
