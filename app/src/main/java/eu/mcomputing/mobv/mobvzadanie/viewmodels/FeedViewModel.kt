@@ -3,15 +3,35 @@ package eu.mcomputing.mobv.mobvzadanie.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
+import eu.mcomputing.mobv.mobvzadanie.DataRepository
 import eu.mcomputing.mobv.mobvzadanie.adapters.MyItem
+import eu.mcomputing.mobv.mobvzadanie.data.db.entities.UserEntity
+import eu.mcomputing.mobv.mobvzadanie.utils.Evento
+import kotlinx.coroutines.launch
 
-class FeedViewModel : ViewModel() {
-    private val _feedItems = MutableLiveData<List<MyItem>>()
-    val feedItems : LiveData<List<MyItem>> get() = _feedItems
+class FeedViewModel(private val repository: DataRepository) : ViewModel() {
 
+    val feedItems: LiveData<List<UserEntity?>> =
+        liveData {
+            loading.postValue(true)
+            repository.apiListGeofence()
+            loading.postValue(false)
+            emitSource(repository.getUsers())
+        }
 
-    fun updateItems(items: List<MyItem>) {
-        _feedItems.value = items
+    private val loading = MutableLiveData(false)
+
+    private val _message = MutableLiveData<Evento<String>>()
+    val message: LiveData<Evento<String>>
+        get() = _message
+
+    fun updateItems() {
+        viewModelScope.launch {
+            loading.postValue(true)
+            _message.postValue(Evento(repository.apiListGeofence()))
+            loading.postValue(false)
+        }
     }
-
 }
