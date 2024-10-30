@@ -10,6 +10,10 @@ android {
     namespace = "eu.mcomputing.mobv.mobvzadanie"
     compileSdk = 34
 
+    buildFeatures {
+        dataBinding = true
+    }
+
     defaultConfig {
         applicationId = "eu.mcomputing.mobv.mobvzadanie"
         minSdk = 28
