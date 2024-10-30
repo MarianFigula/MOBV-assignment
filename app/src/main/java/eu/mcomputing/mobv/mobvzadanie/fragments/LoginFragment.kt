@@ -1,7 +1,6 @@
 package eu.mcomputing.mobv.mobvzadanie.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -11,8 +10,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import eu.mcomputing.mobv.mobvzadanie.viewmodels.AuthViewModel
-import eu.mcomputing.mobv.mobvzadanie.DataRepository
-import eu.mcomputing.mobv.mobvzadanie.PreferenceData
+import eu.mcomputing.mobv.mobvzadanie.data.DataRepository
+import eu.mcomputing.mobv.mobvzadanie.data.PreferenceData
 import eu.mcomputing.mobv.mobvzadanie.R
 import eu.mcomputing.mobv.mobvzadanie.databinding.FragmentLoginBinding
 
