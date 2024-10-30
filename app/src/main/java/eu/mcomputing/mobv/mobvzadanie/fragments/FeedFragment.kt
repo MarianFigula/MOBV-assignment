@@ -7,14 +7,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import eu.mcomputing.mobv.mobvzadanie.DataRepository
+import eu.mcomputing.mobv.mobvzadanie.data.DataRepository
 import eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout
 import eu.mcomputing.mobv.mobvzadanie.viewmodels.FeedViewModel
 import eu.mcomputing.mobv.mobvzadanie.R
-import eu.mcomputing.mobv.mobvzadanie.adapters.FeedAdapter
-import eu.mcomputing.mobv.mobvzadanie.adapters.MyItem
 import eu.mcomputing.mobv.mobvzadanie.databinding.FragmentFeedBinding
 
 class FeedFragment : Fragment(R.layout.fragment_feed),
@@ -44,7 +40,7 @@ class FeedFragment : Fragment(R.layout.fragment_feed),
 //            bnd.btnGenerate.setOnClickListener {
 //                viewModel.updateItems()
 //            }
-            val bottomNavLayout = bnd.root.findViewById<CustomBottomNavLayout>(R.id.customBottomNavLayout)
+            val bottomNavLayout = bnd.feedFragment
             bottomNavLayout.setOnNavIconClickListener(this)
         }
     }
