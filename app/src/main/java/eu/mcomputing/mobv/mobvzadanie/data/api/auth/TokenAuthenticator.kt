@@ -1,6 +1,7 @@
-package eu.mcomputing.mobv.mobvzadanie
+package eu.mcomputing.mobv.mobvzadanie.data.api.auth
 
 import android.content.Context
+import eu.mcomputing.mobv.mobvzadanie.data.PreferenceData
 import eu.mcomputing.mobv.mobvzadanie.data.api.ApiService
 import eu.mcomputing.mobv.mobvzadanie.data.api.RefreshTokenRequest
 import eu.mcomputing.mobv.mobvzadanie.data.model.User
