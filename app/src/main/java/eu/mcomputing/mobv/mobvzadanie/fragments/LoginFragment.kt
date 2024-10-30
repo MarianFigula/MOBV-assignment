@@ -36,7 +36,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         viewModel.loginResult.observe(viewLifecycleOwner){
             val user = it.second
 
-            if (user != null && user.uid.toInt() >= 0){
+            if (user != null && user.id.toInt() >= 0){
                 requireView().findNavController().navigate(R.id.feedFragment)
             }else{
                 Snackbar.make(
