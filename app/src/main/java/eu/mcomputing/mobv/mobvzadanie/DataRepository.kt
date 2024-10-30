@@ -262,7 +262,7 @@ class DataRepository private constructor(
         return Pair("Fatal error. Failed to load user.", null)
     }
 
-    suspend fun apiGeofenceUsers(): String {
+    suspend fun apiListGeofence(): String {
         try {
             val response = service.listGeofence()
 
