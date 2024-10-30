@@ -48,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_email_placeholder"
+                android:text="@={model.email}"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -87,6 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_username_placeholder"
+                android:text="@={model.username}"
                 android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -117,6 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_password_placeholder"
+                android:text="@={model.password}"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -148,6 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/repeat_password_placeholder"
+                android:text="@={model.repeatPassword}"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -171,6 +175,7 @@
             android:layout_marginBottom="@dimen/m40"
             android:text="@string/sign_up"
             android:textColor="@color/white"
+            android:onClick="@{()->model.registerUser()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

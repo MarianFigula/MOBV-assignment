@@ -16,9 +16,8 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ApiService {
-    @Headers("x-apikey: c95332ee022df8c953ce470261efc695ecf3e784")
     @POST("user/create.php")
-    suspend fun registerUser(@Body userInfo: UserRegistration) : Response<RegistrationResponse>
+    suspend fun registerUser(@Body userInfo: UserRegistrationRequest): Response<RegistrationResponse>
 
     @POST("user/login.php")
     suspend fun loginUser(@Body userInfo: UserLoginRequest): Response<LoginResponse>
@@ -38,11 +37,9 @@ interface ApiService {
         @Body refreshInfo: RefreshTokenRequest
     ): Call<RefreshTokenResponse>
 
-    @Headers("x-apikey: c95332ee022df8c953ce470261efc695ecf3e784")
     @POST("user/reset.php")
     suspend fun resetPassword(@Body request: ResetPasswordRequest): Response<ResetPasswordResponse>
 
-    @Headers("x-apikey: c95332ee022df8c953ce470261efc695ecf3e784")
     @POST("user/password.php")
     suspend fun changePassword(
         @Header("Authorization") authToken: String,
@@ -73,7 +70,7 @@ interface ApiService {
 }
 
 // create.php
-data class UserRegistration(
+data class UserRegistrationRequest(
     val name: String,
     val email: String,
     val password: String

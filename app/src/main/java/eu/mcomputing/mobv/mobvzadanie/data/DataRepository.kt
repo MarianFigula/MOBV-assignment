@@ -7,7 +7,7 @@ import eu.mcomputing.mobv.mobvzadanie.data.api.ApiService
 import eu.mcomputing.mobv.mobvzadanie.data.api.ChangePasswordRequest
 import eu.mcomputing.mobv.mobvzadanie.data.api.ResetPasswordRequest
 import eu.mcomputing.mobv.mobvzadanie.data.api.UserLoginRequest
-import eu.mcomputing.mobv.mobvzadanie.data.api.UserRegistration
+import eu.mcomputing.mobv.mobvzadanie.data.api.UserRegistrationRequest
 import eu.mcomputing.mobv.mobvzadanie.data.db.AppRoomDatabase
 import eu.mcomputing.mobv.mobvzadanie.data.db.LocalCache
 import eu.mcomputing.mobv.mobvzadanie.data.db.entities.UserEntity
@@ -54,14 +54,14 @@ class DataRepository private constructor(
             return Pair("Passwords should match", null)
         }
         // Create the UserRegistration object
-        val userRegistration = UserRegistration(username, email, password)
+        val userRegistrationRequest = UserRegistrationRequest(username, email, password)
 
         // Log the data being sent
-        Log.d(TAG, "Registering user with data: ${Gson().toJson(userRegistration)}")
+        Log.d(TAG, "Registering user with data: ${Gson().toJson(userRegistrationRequest)}")
         Log.d(TAG, "usrname: $username, email: $email, password: $password, repeat: $repeatPassword")
 
         try {
-            val response = service.registerUser(UserRegistration(username, email, password))
+            val response = service.registerUser(UserRegistrationRequest(username, email, password))
             if (response.isSuccessful) {
                 response.body()?.let { jsonResponse ->
                     return when (jsonResponse.uid) {
