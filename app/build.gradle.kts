@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     //alias(libs.plugins.androidx.navigation.safeargs) // Use the version from `libs.versions.toml`
+    id("kotlin-kapt")
 
 }
 
@@ -56,5 +57,10 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.gson)
     implementation("com.mapbox.maps:android:10.16.0")
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
 
 }
