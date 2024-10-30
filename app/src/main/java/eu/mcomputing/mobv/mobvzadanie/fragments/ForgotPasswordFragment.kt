@@ -1,6 +1,5 @@
 package eu.mcomputing.mobv.mobvzadanie.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,7 +11,7 @@ import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import eu.mcomputing.mobv.mobvzadanie.viewmodels.AuthViewModel
-import eu.mcomputing.mobv.mobvzadanie.DataRepository
+import eu.mcomputing.mobv.mobvzadanie.data.DataRepository
 import eu.mcomputing.mobv.mobvzadanie.R
 
 class ForgotPasswordFragment() : Fragment(R.layout.fragment_forgot_password) {
