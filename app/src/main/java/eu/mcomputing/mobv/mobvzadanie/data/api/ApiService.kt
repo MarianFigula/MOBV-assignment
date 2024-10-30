@@ -1,8 +1,8 @@
 package eu.mcomputing.mobv.mobvzadanie.data.api
 
 import android.content.Context
-import eu.mcomputing.mobv.mobvzadanie.AuthInterceptor
-import eu.mcomputing.mobv.mobvzadanie.TokenAuthenticator
+import eu.mcomputing.mobv.mobvzadanie.data.api.auth.AuthInterceptor
+import eu.mcomputing.mobv.mobvzadanie.data.api.auth.TokenAuthenticator
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Response
