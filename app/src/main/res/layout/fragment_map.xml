@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/mapFragment"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout>
 
-    <com.mapbox.maps.MapView
-        android:id="@+id/mapView"
+    <data>
+
+    </data>
+
+    <eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="70dp"
-        />
+        android:layout_height="match_parent">
 
-</eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout>
+        <com.mapbox.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp" />
+
+        <ImageView
+            android:id="@+id/my_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:paddingStart="10dp"
+            android:src="@drawable/ic_baseline_gps_fixed_24"
+            app:layout_constraintStart_toStartOf="@id/mapView"
+            app:layout_constraintTop_toTopOf="@id/mapView" />
+
+    </eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout>
+</layout>

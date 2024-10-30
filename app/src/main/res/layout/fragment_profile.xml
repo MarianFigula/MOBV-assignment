@@ -1,30 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eu.mcomputing.mobv.mobvzadanie.CustomBottomNavLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/profileFragment">
+<layout>
+    <data>
 
-    <Button
-        android:id="@+id/signOutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_out"
-        android:layout_marginTop="@dimen/m40"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent" />
+        <variable
+            name="model"
+            type="eu.mcomputing.mobv.mobvzadanie.viewmodels.ProfileViewModel" />
+    </data>
+    <eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profileFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/changePasswordButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/change_password"
-        android:layout_marginTop="@dimen/m40"
-        app:layout_constraintTop_toBottomOf="@id/signOutButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/textViewProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile"
+            app:layout_constraintTop_toTopOf="@id/load_profile_btn"
+            app:layout_constraintBottom_toBottomOf="@id/load_profile_btn"
+            android:layout_marginHorizontal="@dimen/m40"
+            app:layout_constraintStart_toStartOf="parent" />
 
-</eu.mcomputing.mobv.mobvzadanie.CustomBottomNavLayout>
+        <TextView
+            android:id="@+id/textViewProfileUsername"
+            android:text="@{model.userResult.username}"
+            app:layout_constraintTop_toBottomOf="@id/textViewProfile"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/load_profile_btn"
+            android:text="@string/load_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/m40"
+            android:layout_marginHorizontal="@dimen/m40"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/location_label"
+            android:text="Share my location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/location_switch"
+            app:layout_constraintBottom_toBottomOf="@id/location_switch"
+            android:layout_marginHorizontal="@dimen/m40"
+
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:layout_margin="16dp"
+            android:checked="@={model.sharingLocation}"
+            android:id="@+id/location_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m40"
+            app:layout_constraintTop_toBottomOf="@id/textViewProfileUsername"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/signOutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m40"
+            android:text="@string/sign_out"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/location_label" />
+
+        <Button
+            android:id="@+id/changePasswordButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m40"
+            android:text="@string/change_password"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signOutButton" />
+
+    </eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout>
+</layout>
