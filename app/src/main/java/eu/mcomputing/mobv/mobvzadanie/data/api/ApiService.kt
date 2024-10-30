@@ -1,4 +1,4 @@
-package eu.mcomputing.mobv.mobvzadanie
+package eu.mcomputing.mobv.mobvzadanie.data.api
 
 import retrofit2.Response
 import retrofit2.Retrofit

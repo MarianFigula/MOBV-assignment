@@ -1,18 +1,21 @@
-package eu.mcomputing.mobv.mobvzadanie
+package eu.mcomputing.mobv.mobvzadanie.fragments
 
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout
+import eu.mcomputing.mobv.mobvzadanie.viewmodels.FeedViewModel
+import eu.mcomputing.mobv.mobvzadanie.R
+import eu.mcomputing.mobv.mobvzadanie.adapters.FeedAdapter
+import eu.mcomputing.mobv.mobvzadanie.adapters.MyItem
 
-class FeedFragment : Fragment(R.layout.fragment_feed), CustomBottomNavLayout.OnNavIconClickListener {
+class FeedFragment : Fragment(R.layout.fragment_feed),
+    CustomBottomNavLayout.OnNavIconClickListener {
 
     private lateinit var viewModel: FeedViewModel
 

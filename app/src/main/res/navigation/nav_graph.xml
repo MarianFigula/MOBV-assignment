@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/introductionFragment"
-        android:name="eu.mcomputing.mobv.mobvzadanie.IntroductionFragment">
+        android:name="eu.mcomputing.mobv.mobvzadanie.fragments.IntroductionFragment">
 
         <action
             android:id="@+id/action_introductionFragment_to_loginFragment"
@@ -17,7 +17,7 @@
     </fragment>
 
     <fragment android:id="@+id/loginFragment"
-        android:name="eu.mcomputing.mobv.mobvzadanie.LoginFragment" >
+        android:name="eu.mcomputing.mobv.mobvzadanie.fragments.LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_feedFragment"
             app:destination="@id/feedFragment"
@@ -30,7 +30,7 @@
     </fragment>
 
     <fragment android:id="@+id/signUpFragment"
-        android:name="eu.mcomputing.mobv.mobvzadanie.SignUpFragment" >
+        android:name="eu.mcomputing.mobv.mobvzadanie.fragments.SignUpFragment" >
         <action
             android:id="@+id/action_signUpFragment_to_feedFragment"
             app:destination="@id/feedFragment"
@@ -39,7 +39,7 @@
     </fragment>
 
     <fragment android:id="@+id/feedFragment"
-        android:name="eu.mcomputing.mobv.mobvzadanie.FeedFragment" >
+        android:name="eu.mcomputing.mobv.mobvzadanie.fragments.FeedFragment" >
         <action
             android:id="@+id/action_feedFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -50,7 +50,7 @@
     </fragment>
 
     <fragment android:id="@+id/profileFragment"
-        android:name="eu.mcomputing.mobv.mobvzadanie.ProfileFragment" >
+        android:name="eu.mcomputing.mobv.mobvzadanie.fragments.ProfileFragment" >
         <action
             android:id="@+id/action_profileFragment_to_feedFragment"
             app:destination="@id/feedFragment" />
@@ -63,7 +63,7 @@
     </fragment>
 
     <fragment android:id="@+id/mapFragment"
-        android:name="eu.mcomputing.mobv.mobvzadanie.MapFragment" >
+        android:name="eu.mcomputing.mobv.mobvzadanie.fragments.MapFragment" >
         <action
             android:id="@+id/action_mapFragment_to_feedFragment"
             app:destination="@id/feedFragment" />
@@ -73,7 +73,7 @@
     </fragment>
 
     <fragment android:id="@+id/forgotPasswordFragment"
-        android:name="eu.mcomputing.mobv.mobvzadanie.ForgotPasswordFragment" >
+        android:name="eu.mcomputing.mobv.mobvzadanie.fragments.ForgotPasswordFragment" >
 
 
         <action
@@ -82,7 +82,7 @@
     </fragment>
 
     <fragment android:id="@+id/ChangePasswordFragment"
-        android:name="eu.mcomputing.mobv.mobvzadanie.ChangePasswordFragment">
+        android:name="eu.mcomputing.mobv.mobvzadanie.fragments.ChangePasswordFragment">
 
         <action
             android:id="@+id/action_forgotPasswordResetFragment_to_profileFragment"

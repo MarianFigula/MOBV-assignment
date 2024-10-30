@@ -1,4 +1,4 @@
-package eu.mcomputing.mobv.mobvzadanie
+package eu.mcomputing.mobv.mobvzadanie.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
+import eu.mcomputing.mobv.mobvzadanie.viewmodels.AuthViewModel
+import eu.mcomputing.mobv.mobvzadanie.DataRepository
+import eu.mcomputing.mobv.mobvzadanie.R
 
 class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password) {
     val TAG = "ForgotPasswordFragment"

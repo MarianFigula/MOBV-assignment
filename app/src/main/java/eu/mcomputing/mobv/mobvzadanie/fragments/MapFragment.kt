@@ -1,4 +1,4 @@
-package eu.mcomputing.mobv.mobvzadanie
+package eu.mcomputing.mobv.mobvzadanie.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mapbox.maps.MapView
 import com.mapbox.maps.Style
+import eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout
+import eu.mcomputing.mobv.mobvzadanie.R
 
 class MapFragment: Fragment(R.layout.fragment_map),
     CustomBottomNavLayout.OnNavIconClickListener

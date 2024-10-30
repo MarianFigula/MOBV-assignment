@@ -1,7 +1,6 @@
-package eu.mcomputing.mobv.mobvzadanie
+package eu.mcomputing.mobv.mobvzadanie.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -12,6 +11,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
+import eu.mcomputing.mobv.mobvzadanie.viewmodels.AuthViewModel
+import eu.mcomputing.mobv.mobvzadanie.DataRepository
+import eu.mcomputing.mobv.mobvzadanie.R
 
 
 class LoginFragment : Fragment(R.layout.fragment_login) {

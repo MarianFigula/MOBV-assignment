@@ -1,10 +1,11 @@
-package eu.mcomputing.mobv.mobvzadanie
+package eu.mcomputing.mobv.mobvzadanie.fragments
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import eu.mcomputing.mobv.mobvzadanie.R
 
 class IntroductionFragment: Fragment(R.layout.fragment_intro) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

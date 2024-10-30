@@ -1,4 +1,4 @@
-package eu.mcomputing.mobv.mobvzadanie
+package eu.mcomputing.mobv.mobvzadanie.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import eu.mcomputing.mobv.mobvzadanie.R
 
 data class MyItem(val id: Int, val imageResource: Int, val text: String) {
     override fun equals(other: Any?): Boolean {

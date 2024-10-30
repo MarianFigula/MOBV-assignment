@@ -1,4 +1,4 @@
-package eu.mcomputing.mobv.mobvzadanie
+package eu.mcomputing.mobv.mobvzadanie.data.model
 
 import com.google.gson.Gson
 import java.io.IOException
@@ -8,7 +8,8 @@ data class User(
     val email: String,
     val id: String,
     val access: String,
-    val refresh: String
+    val refresh: String,
+    val photo: String = ""
 ) {
 
     fun toJson(): String? {

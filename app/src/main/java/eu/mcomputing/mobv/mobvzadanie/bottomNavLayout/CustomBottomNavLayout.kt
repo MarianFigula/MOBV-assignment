@@ -1,10 +1,11 @@
-package eu.mcomputing.mobv.mobvzadanie
+package eu.mcomputing.mobv.mobvzadanie.bottomNavLayout
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import eu.mcomputing.mobv.mobvzadanie.R
 
 class CustomBottomNavLayout(
     context: Context,

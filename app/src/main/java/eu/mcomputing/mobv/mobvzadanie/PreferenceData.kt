@@ -2,6 +2,7 @@ package eu.mcomputing.mobv.mobvzadanie
 
 import android.content.Context
 import android.content.SharedPreferences
+import eu.mcomputing.mobv.mobvzadanie.data.model.User
 
 class PreferenceData private constructor() {
 

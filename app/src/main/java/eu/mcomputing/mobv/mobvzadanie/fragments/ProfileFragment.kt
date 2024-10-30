@@ -1,11 +1,12 @@
-package eu.mcomputing.mobv.mobvzadanie
+package eu.mcomputing.mobv.mobvzadanie.fragments
 
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
+import eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout
+import eu.mcomputing.mobv.mobvzadanie.R
 
 class ProfileFragment: Fragment(R.layout.fragment_profile),
     CustomBottomNavLayout.OnNavIconClickListener
