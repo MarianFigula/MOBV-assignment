@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eu.mcomputing.mobv.mobvzadanie.CustomBottomNavLayout
+<eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,4 +14,4 @@
         android:layout_marginBottom="70dp"
         />
 
-</eu.mcomputing.mobv.mobvzadanie.CustomBottomNavLayout>
+</eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout>
