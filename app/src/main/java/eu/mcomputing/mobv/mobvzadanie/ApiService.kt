@@ -32,6 +32,10 @@ interface ApiService {
         fun create(): ApiService {
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://zadanie.mpage.sk/")
+                // TODO tu nieco pridat ako pozmenit header, asi ..
+                //  ak by sme stratili access token tak pomocou refreshu ho obnovit -
+                //  interceptor
+                //
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
