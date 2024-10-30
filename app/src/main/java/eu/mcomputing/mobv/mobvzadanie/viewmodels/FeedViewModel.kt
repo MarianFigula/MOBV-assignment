@@ -5,8 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import eu.mcomputing.mobv.mobvzadanie.DataRepository
-import eu.mcomputing.mobv.mobvzadanie.adapters.MyItem
+import eu.mcomputing.mobv.mobvzadanie.data.DataRepository
 import eu.mcomputing.mobv.mobvzadanie.data.db.entities.UserEntity
 import eu.mcomputing.mobv.mobvzadanie.utils.Evento
 import kotlinx.coroutines.launch
