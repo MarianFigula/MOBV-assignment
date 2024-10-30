@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import eu.mcomputing.mobv.mobvzadanie.viewmodels.AuthViewModel
-import eu.mcomputing.mobv.mobvzadanie.DataRepository
+import eu.mcomputing.mobv.mobvzadanie.data.DataRepository
 import eu.mcomputing.mobv.mobvzadanie.R
 
 class ChangePasswordFragment: Fragment(R.layout.fragment_forgot_password_reset) {
