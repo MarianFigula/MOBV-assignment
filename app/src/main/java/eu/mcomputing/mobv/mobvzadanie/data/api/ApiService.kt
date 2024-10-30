@@ -1,5 +1,10 @@
 package eu.mcomputing.mobv.mobvzadanie.data.api
 
+import android.content.Context
+import eu.mcomputing.mobv.mobvzadanie.AuthInterceptor
+import eu.mcomputing.mobv.mobvzadanie.TokenAuthenticator
+import okhttp3.OkHttpClient
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,15 +27,18 @@ interface ApiService {
 
     @GET("user/get.php")
     suspend fun getUser(
-        @HeaderMap header: Map<String, String>,
         @Query("id") id: String
     ): Response<UserResponse>
 
     @POST("user/refresh.php")
     suspend fun refreshToken(
-        @HeaderMap header: Map<String, String>,
         @Body refreshInfo: RefreshTokenRequest
     ): Response<RefreshTokenResponse>
+
+    @POST("user/refresh.php")
+    fun refreshTokenBlocking(
+        @Body refreshInfo: RefreshTokenRequest
+    ): Call<RefreshTokenResponse>
 
     @Headers("x-apikey: c95332ee022df8c953ce470261efc695ecf3e784")
     @POST("user/reset.php")
@@ -44,13 +52,16 @@ interface ApiService {
     ): Response<ChangePasswordResponse>
 
     companion object {
-        fun create(): ApiService {
+        fun create(context: Context): ApiService {
+
+            val client = OkHttpClient.Builder()
+                .addInterceptor(AuthInterceptor(context))
+                .authenticator(TokenAuthenticator(context))
+                .build()
+
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://zadanie.mpage.sk/")
-                // TODO tu nieco pridat ako pozmenit header, asi ..
-                //  ak by sme stratili access token tak pomocou refreshu ho obnovit -
-                //  interceptor
-                //
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
