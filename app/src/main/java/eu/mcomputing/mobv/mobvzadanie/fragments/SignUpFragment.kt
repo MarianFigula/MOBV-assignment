@@ -13,54 +13,49 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import eu.mcomputing.mobv.mobvzadanie.viewmodels.AuthViewModel
 import eu.mcomputing.mobv.mobvzadanie.DataRepository
+import eu.mcomputing.mobv.mobvzadanie.PreferenceData
 import eu.mcomputing.mobv.mobvzadanie.R
+import eu.mcomputing.mobv.mobvzadanie.databinding.FragmentSignupBinding
 
 
-class SignUpFragment : Fragment(R.layout.fragment_signup) {
-    val TAG = "SignUpFragment"
-
+class SignupFragment : Fragment(R.layout.fragment_signup) {
     private lateinit var viewModel: AuthViewModel
+    private var binding: FragmentSignupBinding? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        val submitButton: Button = view.findViewById(R.id.submitButton)
-
-
-        viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory{
+        viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 return AuthViewModel(DataRepository.getInstance(requireContext())) as T
             }
         })[AuthViewModel::class.java]
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        viewModel.registrationResult.observe(viewLifecycleOwner){
-            if (it.second != null){
-                requireView().findNavController().navigate(R.id.feedFragment)
-            }else{
-                Snackbar.make(
-                    submitButton,
-                    it.first,
-                    Snackbar.LENGTH_SHORT
-                ).show()
+        binding = FragmentSignupBinding.bind(view).apply {
+            lifecycleOwner = viewLifecycleOwner
+            model = viewModel
+        }.also { bnd ->
+
+            viewModel.registrationResult.observe(viewLifecycleOwner) {
+                if (it.isNotEmpty()) {
+                    Snackbar.make(
+                        bnd.submitButton,
+                        it,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
             }
-        }
 
-        submitButton.apply {
-            setOnClickListener {
-                viewModel.registerUser(
-                    view.findViewById<TextInputEditText>(R.id.editUsername).text.toString(),
-                    view.findViewById<TextInputEditText>(R.id.editTextEmailReg).text.toString(),
-                    view.findViewById<TextInputEditText>(R.id.editPasswordReg).text.toString(),
-                    view.findViewById<TextInputEditText>(R.id.editRepeatPassword).text.toString()
-                )
+            viewModel.userResult.observe(viewLifecycleOwner) {
+                it?.let { user ->
+                    PreferenceData.getInstance().putUser(requireContext(), user)
+                    requireView().findNavController().navigate(R.id.action_signUpFragment_to_feedFragment)
+                } ?: PreferenceData.getInstance().putUser(requireContext(), null)
             }
-        }
-
-
-        val alreadyLoggedIn: TextView = view.findViewById(R.id.alreadyLoggedInLink)
-        alreadyLoggedIn.setOnClickListener {
-            findNavController().navigate(R.id.loginFragment)
         }
     }
 

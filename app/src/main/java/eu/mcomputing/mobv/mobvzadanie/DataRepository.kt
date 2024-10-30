@@ -3,12 +3,10 @@ package eu.mcomputing.mobv.mobvzadanie
 import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
-import eu.mcomputing.mobv.mobvzadanie.config.AppConfig
 import eu.mcomputing.mobv.mobvzadanie.data.api.ApiService
 import eu.mcomputing.mobv.mobvzadanie.data.api.ChangePasswordRequest
-import eu.mcomputing.mobv.mobvzadanie.data.api.RefreshTokenRequest
 import eu.mcomputing.mobv.mobvzadanie.data.api.ResetPasswordRequest
-import eu.mcomputing.mobv.mobvzadanie.data.api.UserLogin
+import eu.mcomputing.mobv.mobvzadanie.data.api.UserLoginRequest
 import eu.mcomputing.mobv.mobvzadanie.data.api.UserRegistration
 import eu.mcomputing.mobv.mobvzadanie.data.db.AppRoomDatabase
 import eu.mcomputing.mobv.mobvzadanie.data.db.LocalCache
@@ -104,7 +102,7 @@ class DataRepository private constructor(
         name: String,
         password: String
     ): Pair<String, User?> {
-
+        Log.d(TAG, name)
         if (name.isEmpty()) {
             return Pair("Email cannot be empty", null)
         }
@@ -113,14 +111,14 @@ class DataRepository private constructor(
         }
 
         // Create the UserRegistration object
-        val userLogin = UserLogin(name, password)
+        val userLoginRequest = UserLoginRequest(name, password)
 
         // Log the data being sent
-        Log.d(TAG, "Login user with data: ${Gson().toJson(userLogin)}")
+        Log.d(TAG, "Login user with data: ${Gson().toJson(userLoginRequest)}")
         Log.d(TAG, "email: $name, password: $password")
 
         try {
-            val response = service.loginUser(UserLogin(name, password))
+            val response = service.loginUser(UserLoginRequest(name, password))
             if (response.isSuccessful) {
                 response.body()?.let { jsonResponse ->
                     return if (jsonResponse.uid.toInt() >= 0) {

@@ -11,7 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
-import retrofit2.http.HeaderMap
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -21,9 +20,8 @@ interface ApiService {
     @POST("user/create.php")
     suspend fun registerUser(@Body userInfo: UserRegistration) : Response<RegistrationResponse>
 
-    @Headers("x-apikey: c95332ee022df8c953ce470261efc695ecf3e784")
     @POST("user/login.php")
-    suspend fun loginUser(@Body userInfo: UserLogin): Response<LoginResponse>
+    suspend fun loginUser(@Body userInfo: UserLoginRequest): Response<LoginResponse>
 
     @GET("user/get.php")
     suspend fun getUser(
@@ -88,7 +86,7 @@ data class RegistrationResponse(
 )
 
 // login.php
-data class UserLogin(
+data class UserLoginRequest(
     val name: String,
     val password: String
 )

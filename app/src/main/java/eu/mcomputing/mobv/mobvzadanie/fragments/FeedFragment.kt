@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import eu.mcomputing.mobv.mobvzadanie.DataRepository
 import eu.mcomputing.mobv.mobvzadanie.bottomNavLayout.CustomBottomNavLayout
 import eu.mcomputing.mobv.mobvzadanie.viewmodels.FeedViewModel
 import eu.mcomputing.mobv.mobvzadanie.R
@@ -24,7 +26,12 @@ class FeedFragment : Fragment(R.layout.fragment_feed),
     val TAG = "FeedFragment"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[FeedViewModel::class.java]
+
+        viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return FeedViewModel(DataRepository.getInstance(requireContext())) as T
+            }
+        })[FeedViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,9 +41,11 @@ class FeedFragment : Fragment(R.layout.fragment_feed),
             lifecycleOwner = viewLifecycleOwner
             model = viewModel
         }.also { bnd->
-            bnd.btnGenerate.setOnClickListener {
-                viewModel.updateItems()
-            }
+//            bnd.btnGenerate.setOnClickListener {
+//                viewModel.updateItems()
+//            }
+            val bottomNavLayout = bnd.root.findViewById<CustomBottomNavLayout>(R.id.customBottomNavLayout)
+            bottomNavLayout.setOnNavIconClickListener(this)
         }
     }
 

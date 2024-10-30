@@ -1,5 +1,6 @@
 package eu.mcomputing.mobv.mobvzadanie.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,44 +10,47 @@ import eu.mcomputing.mobv.mobvzadanie.data.model.User
 import kotlinx.coroutines.launch
 
 class AuthViewModel(private val dataRepository: DataRepository) : ViewModel() {
-    private val _registrationResult = MutableLiveData<Pair<String, User?>>()
-    private val _loginResult = MutableLiveData<Pair<String, User?>>()
+    private val TAG = "AuthViewModel"
+    private val _registrationResult = MutableLiveData<String>()
+    val registrationResult: LiveData<String> get() = _registrationResult
+
+    private val _loginResult = MutableLiveData<String>()
+    val loginResult: LiveData<String> get() = _loginResult
+
+    private val _userResult = MutableLiveData<User?>()
+    val userResult: LiveData<User?> get() = _userResult
+
+
     private val _resetPasswordResult = MutableLiveData<Pair<String, String?>>()
     private val _changePasswordResult = MutableLiveData<Pair<String, String?>>()
 
-    val registrationResult : LiveData<Pair<String, User?>> get() = _registrationResult
-    val loginResult : LiveData<Pair<String, User?>> get() = _loginResult
     val resetPasswordResult : LiveData<Pair<String, String?>> get() = _resetPasswordResult
     val changePasswordResult : LiveData<Pair<String, String?>> get() = _changePasswordResult
 
-    fun registerUser(
-        username: String,
-        email: String,
-        password: String,
-        repeatPassword: String
-    ){
+    val username = MutableLiveData<String>()
+    val email = MutableLiveData<String>()
+    val password = MutableLiveData<String>()
+    val repeatPassword = MutableLiveData<String>()
 
+    fun registerUser() {
         viewModelScope.launch {
-            _registrationResult.postValue(dataRepository.
-            apiRegisterUser(
-                username,
-                email,
-                password,
-                repeatPassword
-            ))
+            val result = dataRepository.apiRegisterUser(
+                username.value ?: "",
+                email.value ?: "",
+                password.value ?: "",
+                repeatPassword.value ?: ""
+            )
+            _registrationResult.postValue(result.first ?: "")
+            _userResult.postValue(result.second)
         }
     }
 
-    fun loginUser(
-        email: String,
-        password: String
-    ){
+    fun loginUser() {
         viewModelScope.launch {
-            _loginResult.postValue(dataRepository.
-            apiLoginUser(
-                email,
-                password
-            ))
+            val result = dataRepository.apiLoginUser(email.value ?: "", password.value ?: "")
+            Log.d(TAG, result.toString())
+            _loginResult.postValue(result.first ?: "")
+            _userResult.postValue(result.second)
         }
     }
 
