@@ -14,7 +14,7 @@ import eu.mcomputing.mobv.mobvzadanie.viewmodels.AuthViewModel
 import eu.mcomputing.mobv.mobvzadanie.data.DataRepository
 import eu.mcomputing.mobv.mobvzadanie.R
 
-class ForgotPasswordFragment() : Fragment(R.layout.fragment_forgot_password) {
+class ForgotPasswordFragment() : Fragment(R.layout.fragment_password_reset) {
     val TAG = "ForgotPasswordFragment"
     private lateinit var viewModel: AuthViewModel
 
