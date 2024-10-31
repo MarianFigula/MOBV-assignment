@@ -4,10 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -76,6 +73,10 @@ class ProfileFragment: Fragment(R.layout.fragment_profile),
             bnd.signOutButton.setOnClickListener {
                 PreferenceData.getInstance().clearData(requireContext())
                 it.findNavController().navigate(R.id.action_profileFragment_to_introductionFragment)
+            }
+
+            bnd.changePasswordButton.setOnClickListener {
+                it.findNavController().navigate(R.id.action_profileFragment_to_ChangePasswordFragment)
             }
 
             viewModel.profileResult.observe(viewLifecycleOwner) {

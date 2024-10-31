@@ -41,10 +41,7 @@ interface ApiService {
     suspend fun resetPassword(@Body request: ResetPasswordRequest): Response<ResetPasswordResponse>
 
     @POST("user/password.php")
-    suspend fun changePassword(
-        @Header("Authorization") authToken: String,
-        @Body request: ChangePasswordRequest
-    ): Response<ChangePasswordResponse>
+    suspend fun changePassword(@Body request: ChangePasswordRequest): Response<ChangePasswordResponse>
 
 
     @GET("geofence/list.php")
@@ -117,7 +114,7 @@ data class ResetPasswordResponse(val status: String, val message: String? = null
 
 
 // password.php
-data class ChangePasswordRequest(val oldPassword: String, val newPassword: String)
+data class ChangePasswordRequest(val old_password: String, val new_password: String)
 data class ChangePasswordResponse(val status: String)
 
 // geofence/list.php

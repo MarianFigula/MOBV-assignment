@@ -198,7 +198,6 @@ class DataRepository private constructor(
     }
 
     suspend fun apiChangePassword(
-        authToken: String,
         oldPassword: String,
         newPassword: String
     ) : Pair<String, String?> {
@@ -210,10 +209,7 @@ class DataRepository private constructor(
         Log.d(TAG, "Changing password with data: ${Gson().toJson(changePasswordRequest)}")
 
         try {
-            val response = service.changePassword(
-                "Barer: $authToken",
-                ChangePasswordRequest(oldPassword, newPassword)
-            )
+            val response = service.changePassword(ChangePasswordRequest(oldPassword, newPassword))
 
             if (response.isSuccessful){
                 response.body()?.let { jsonResponse ->
